@@ -73,7 +73,6 @@ export default function Registro() {
               <option>3° Grado</option>
               <option>4° Grado</option>
               <option>5° Grado</option>
-              <option>6° Grado</option>
             </select>
           </div>
 
