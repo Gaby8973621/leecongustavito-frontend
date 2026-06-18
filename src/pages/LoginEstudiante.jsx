@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
+import { collection, query, where, getDocs, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,6 @@ export default function LoginEstudiante() {
     setCargando(true);
 
     try {
-      // Buscar el aula con ese código
       const aulasRef = collection(db, "docentes");
       const q = query(aulasRef, where("codigoAula", "==", codigo.toUpperCase()));
       const snap = await getDocs(q);
@@ -30,15 +29,12 @@ export default function LoginEstudiante() {
       const docenteDoc = snap.docs[0];
       const docenteId = docenteDoc.id;
 
-      // Buscar si el estudiante ya existe en esa aula
       const estudiantesRef = collection(db, "docentes", docenteId, "estudiantes");
       const qEst = query(estudiantesRef, where("nombre", "==", nombre.trim()));
       const snapEst = await getDocs(qEst);
 
       let estudianteId;
-
       if (snapEst.empty) {
-        // Crear el estudiante nuevo
         const nuevo = await addDoc(estudiantesRef, {
           nombre: nombre.trim(),
           nivelLector: 1,
@@ -50,15 +46,28 @@ export default function LoginEstudiante() {
         estudianteId = snapEst.docs[0].id;
       }
 
-      // Guardar sesión en localStorage
-      localStorage.setItem("estudiante", JSON.stringify({
-        id: estudianteId,
-        nombre: nombre.trim(),
+      // Crear sesión en Firestore
+      const sesionRef = await addDoc(collection(db, "sesiones"), {
+        estudianteId,
+        nombre:     nombre.trim(),
+        codigoAula: codigo.toUpperCase(),
         docenteId,
+        entrada:    serverTimestamp(),
+        salida:     null,
+      });
+
+      // Guardar en localStorage incluyendo sesionId y codigoAula
+      localStorage.setItem("estudiante", JSON.stringify({
+        id:         estudianteId,
+        nombre:     nombre.trim(),
+        docenteId,
+        sesionId:   sesionRef.id,
+        codigoAula: codigo.toUpperCase(),
       }));
 
       navigate("/app-estudiante");
-    } catch {
+    } catch (e) {
+      console.error("Error al entrar:", e);
       setError("Ocurrió un error. Intenta de nuevo.");
     } finally {
       setCargando(false);
