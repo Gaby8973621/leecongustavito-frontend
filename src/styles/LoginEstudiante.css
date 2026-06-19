@@ -1,40 +1,4 @@
-.back-circle {
-  position: fixed;
-
-  top: 30px;
-  left: 30px;
-
-  width: 55px;
-  height: 55px;
-
-  border: none;
-  border-radius: 50%;
-
-  background: white;
-
-  color: #5b8cff;
-
-  font-size: 26px;
-  font-weight: bold;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 8px 20px rgba(0,0,0,0.15);
-
-  transition: all 0.3s ease;
-
-  z-index: 1000;
-}
-
-.back-circle:hover {
-  transform: translateX(-4px) scale(1.05);
-
-  box-shadow:
-    0 12px 25px rgba(0,0,0,0.20);
-}
-
-.login-container {
+.estudiante-container {
   min-height: 100vh;
 
   display: flex;
@@ -50,11 +14,11 @@
   );
 }
 
-.login-card {
-  font-family: 'Poppins', sans-serif;
-  
+.estudiante-card {
+    font-family: 'Poppins', sans-serif; 
+
   width: 100%;
-  max-width: 420px;
+  max-width: 450px;
 
   background: white;
 
@@ -68,25 +32,30 @@
     0 20px 60px rgba(0,0,0,0.15);
 }
 
-.login-logo {
+.estudiante-logo {
   font-size: 60px;
+
   margin-bottom: 10px;
 }
 
-.login-title {
+.estudiante-title {
   color: #2d2d2d;
+
   font-size: 2rem;
   font-weight: 700;
 
   margin-bottom: 5px;
 }
 
-.login-subtitle {
+.estudiante-subtitle {
   color: #777;
+
   margin-bottom: 30px;
+
+  font-size: 15px;
 }
 
-.login-form {
+.estudiante-form {
   text-align: left;
 }
 
@@ -123,6 +92,21 @@
 
 .form-group input:focus {
   border-color: #5b8cff;
+
+  box-shadow:
+    0 0 0 4px rgba(91,140,255,0.15);
+}
+
+.codigo-input {
+  text-transform: uppercase;
+
+  letter-spacing: 4px;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  text-align: center;
 }
 
 .error-message {
@@ -139,7 +123,7 @@
   font-size: 13px;
 }
 
-.login-button {
+.estudiante-button {
   width: 100%;
 
   padding: 14px;
@@ -161,31 +145,65 @@
     #a348c7
   );
 
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
 
-.login-button:hover {
-  transform: translateY(-2px);
+.estudiante-button:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 25px rgba(91,140,255,0.3);
 }
 
-.registro-texto {
-  margin-top: 20px;
+.back-circle {
+  position: fixed;
 
-  color: #777;
+  top: 30px;
+  left: 30px;
 
-  font-size: 14px;
-}
+  width: 55px;
+  height: 55px;
 
-.registro-link {
+  border: none;
+  border-radius: 50%;
+
+  background: white;
+
   color: #5b8cff;
 
-  font-weight: 600;
-
-  margin-left: 5px;
+  font-size: 26px;
+  font-weight: bold;
 
   cursor: pointer;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.15);
+
+  transition: all 0.3s ease;
 }
 
-.registro-link:hover {
-  text-decoration: underline;
+.back-circle:hover {
+  transform: translateX(-4px) scale(1.05);
+}
+
+@media (max-width: 768px) {
+
+  .estudiante-card {
+    padding: 30px 20px;
+  }
+
+  .estudiante-title {
+    font-size: 1.8rem;
+  }
+
+  .estudiante-logo {
+    font-size: 50px;
+  }
+
+  .back-circle {
+    width: 45px;
+    height: 45px;
+
+    font-size: 22px;
+  }
 }

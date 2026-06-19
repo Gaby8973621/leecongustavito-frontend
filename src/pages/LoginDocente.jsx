@@ -37,6 +37,13 @@ export default function LoginDocente() {
     <div className="login-container">
       <div className="login-card">
 
+        <button
+            className="back-circle"
+            onClick={() => navigate("/")}
+          >
+            ← 
+        </button>
+
         <div className="login-logo">
           📖
         </div>

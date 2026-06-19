@@ -58,6 +58,13 @@ export default function Registro() {
     <div className="registro-container">
       <div className="registro-card">
 
+        <button
+          className="back-circle"
+          onClick={() => navigate("/login-docente")}
+        >
+          ← 
+        </button>
+
         <div className="registro-logo">
           👩‍🏫
         </div>
