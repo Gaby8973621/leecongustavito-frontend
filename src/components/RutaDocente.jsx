@@ -6,4 +6,4 @@ export default function RutaDocente({ children }) {
     return <Navigate to="/seleccion" replace />;
   }
   return children;
-}``
+}

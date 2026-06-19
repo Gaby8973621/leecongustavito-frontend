@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Seleccion from "./pages/Seleccion";
-import Login from "./pages/Login";
+import LoginDocente from "./pages/LoginDocente";
 import Registro from "./pages/Registro";
 import LoginEstudiante from "./pages/LoginEstudiante";
 import Dashboard from "./pages/DashboardDocente";
@@ -18,7 +18,7 @@ export default function App() {
         {/* Públicas */}
         <Route path="/" element={<Navigate to="/seleccion" />} />
         <Route path="/seleccion" element={<Seleccion />} />
-        <Route path="/login-docente" element={<Login />} />
+        <Route path="/login-docente" element={<LoginDocente />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/login-estudiante" element={<LoginEstudiante />} />
 
