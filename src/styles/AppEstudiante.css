@@ -1,0 +1,300 @@
+/* ===== CONTENEDOR GENERAL ===== */
+
+.app-estudiante,
+.leer-page,
+.quiz-page,
+.resultado-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ===== HEADER ===== */
+
+.header,
+.leer-header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.header button,
+.leer-header button {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.header button:hover,
+.leer-header button:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* ===== TABS ===== */
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.tabs button {
+  border: none;
+  background: #eef2ff;
+  color: #4f46e5;
+  padding: 10px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.tabs button:hover {
+  background: #dbe4ff;
+}
+
+/* ===== GRID DE CUENTOS ===== */
+
+.grid-cuentos {
+  max-width: 1100px;
+  margin: 25px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.cuento-card {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+}
+
+.cuento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+}
+
+.cuento-card div:first-child {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.cuento-card h4 {
+  margin: 0;
+  color: #333;
+}
+
+/* ===== PANTALLA LEER ===== */
+
+.leer-content {
+  max-width: 850px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.cuento-emoji {
+  text-align: center;
+  font-size: 5rem;
+  margin-bottom: 20px;
+}
+
+.cuento-texto {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  line-height: 1.9;
+  font-size: 1rem;
+  color: #444;
+  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+}
+
+/* ===== BOTON PRINCIPAL ===== */
+
+.btn-principal {
+  width: 100%;
+  margin-top: 25px;
+  padding: 15px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-principal:hover {
+  transform: translateY(-2px);
+}
+
+.btn-principal:disabled {
+  background: #cfcfcf;
+  cursor: not-allowed;
+}
+
+/* ===== QUIZ ===== */
+
+.quiz-page {
+  padding: 30px;
+}
+
+.pregunta-card {
+  max-width: 850px;
+  margin: 0 auto 20px;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+}
+
+.pregunta-card h4 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.opcion {
+  width: 100%;
+  text-align: left;
+  border: 2px solid #e5e7eb;
+  background: white;
+  padding: 14px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.opcion:hover {
+  border-color: #667eea;
+}
+
+.opcion.active {
+  background: #eef2ff;
+  border-color: #667eea;
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+/* ===== RESULTADO ===== */
+
+.resultado-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultado-card {
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  padding: 40px;
+  text-align: center;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
+
+.resultado-card h1 {
+  color: #4f46e5;
+  margin-bottom: 20px;
+}
+
+.resultado-card p {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.resultado-card button {
+  margin-top: 20px;
+  border: none;
+  background: linear-gradient(135deg,#667eea,#764ba2);
+  color: white;
+  padding: 14px 25px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+/* ===== PROGRESO ===== */
+
+.progreso {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.progreso h3 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.medallas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+  gap: 18px;
+}
+
+.medalla {
+  background: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 18px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+  transition: .3s;
+}
+
+.medalla:hover {
+  transform: translateY(-3px);
+}
+
+.medalla div {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.medalla p {
+  margin: 0;
+  font-weight: 600;
+  color: #444;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .header,
+  .leer-header {
+    padding: 15px;
+  }
+
+  .grid-cuentos {
+    grid-template-columns: 1fr;
+  }
+
+  .cuento-texto {
+    padding: 20px;
+  }
+
+  .resultado-card {
+    margin: 20px;
+  }
+}

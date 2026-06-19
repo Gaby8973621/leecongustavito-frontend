@@ -1,179 +1,113 @@
+/* ===================== CONTENEDOR GENERAL ===================== */
+
 .seleccion-container {
   min-height: 100vh;
-  background: linear-gradient(
-    135deg,
-    #5b8cff,
-    #a348c7
-  );
-
   display: flex;
   justify-content: center;
   align-items: center;
-
+  background: linear-gradient(135deg, #667eea, #764ba2);
   padding: 20px;
-
-  font-family: 'Poppins', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
-.contenido {
+/* ===================== CONTENIDO ===================== */
+
+.seleccion-content {
   width: 100%;
-  max-width: 900px;
+  max-width: 520px;
   text-align: center;
-
-  padding-top: 40px;
 }
 
-/* TÍTULO */
+/* ===================== TITULOS ===================== */
 
-h1 {
+.titulo {
   color: white;
-  font-size: 3.5rem;
-  font-weight: 800;
-
-  margin-top: 20px;
+  font-size: 30px;
+  font-weight: 900;
   margin-bottom: 10px;
-
-  text-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
-
-/* SUBTÍTULO */
 
 .subtitulo {
-  color: rgba(255,255,255,0.95);
-
-  font-size: 1.5rem;
-  font-weight: 400;
-
-  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  margin-bottom: 20px;
 }
 
-/* MASCOTA */
+/* ===================== MASCOTA (MÁS GRANDE) ===================== */
 
 .mascota {
+  width: 300px;
+  max-width: 85%;
+  margin: 25px auto 35px auto;
   display: block;
-
-  width: 600px;
-  max-width: 100%;
-
-  margin: 0 auto 15px auto;
-
-  filter:
-    drop-shadow(0 20px 30px rgba(0,0,0,.25));
+  filter: drop-shadow(0 12px 25px rgba(0,0,0,0.25));
 }
 
-/* TARJETAS */
+/* ===================== CARD BASE (MÁS GRANDE) ===================== */
 
 .card {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 18px;
 
-  padding: 28px 35px;
+  padding: 24px 22px;
+  border-radius: 20px;
 
-  border-radius: 28px;
+  margin-bottom: 18px;
 
   cursor: pointer;
+  transition: all 0.25s ease;
 
-  margin-bottom: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
 
-  transition: all 0.3s ease;
-
-  box-shadow:
-    0 15px 35px rgba(0,0,0,0.15);
+  text-align: left;
 }
 
+/* hover general */
 .card:hover {
   transform: translateY(-5px);
 }
 
-/* DOCENTE */
+/* ===================== DOCENTE ===================== */
 
-.docente {
-  background: #f7ca4d;
+.card.docente {
+  background: #f6c945;
+  color: #2d2d2d;
 }
 
-/* ESTUDIANTE */
+.card.docente:hover {
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+}
 
-.estudiante {
-  background: linear-gradient(
-    135deg,
-    #4e86ff,
-    #3c57d8
-  );
+/* ===================== ESTUDIANTE ===================== */
 
+.card.estudiante {
+  background: #4c7dff;
   color: white;
 }
 
-/* ICONOS */
-
-.icono {
-  font-size: 4rem;
+.card.estudiante:hover {
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
 }
 
-/* TEXTO TARJETAS */
+/* ===================== ICONO MÁS GRANDE ===================== */
+
+.icono {
+  font-size: 48px;
+  width: 70px;
+  text-align: center;
+}
+
+/* ===================== TEXTO ===================== */
 
 .card h2 {
   margin: 0;
-
-  font-size: 2rem;
-  font-weight: 700;
-
-  text-align: left;
+  font-size: 20px;
+  font-weight: 800;
 }
 
 .card p {
-  margin-top: 5px;
-
-  font-size: 1.1rem;
-  font-weight: 400;
-
-  text-align: left;
-}
-
-.docente h2,
-.docente p {
-  color: #222;
-}
-
-.estudiante h2,
-.estudiante p {
-  color: white;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 768px) {
-
-  .contenido {
-    padding-top: 20px;
-  }
-
-  h1 {
-    font-size: 2.3rem;
-  }
-
-  .subtitulo {
-    font-size: 1.2rem;
-  }
-
-  .mascota {
-    width: 400px;
-  }
-
-  .card {
-    padding: 20px;
-    gap: 15px;
-  }
-
-  .card h2 {
-    font-size: 1.4rem;
-  }
-
-  .card p {
-    font-size: 1rem;
-  }
-
-  .icono {
-    font-size: 3rem;
-  }
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
 }

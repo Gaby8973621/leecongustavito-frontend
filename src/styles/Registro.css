@@ -1,4 +1,42 @@
+.back-circle {
+  position: fixed;
+
+  top: 30px;
+  left: 30px;
+
+  width: 55px;
+  height: 55px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: white;
+
+  color: #5b8cff;
+
+  font-size: 26px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.15);
+
+  transition: all 0.3s ease;
+
+  z-index: 1000;
+}
+
+.back-circle:hover {
+  transform: translateX(-4px) scale(1.05);
+
+  box-shadow:
+    0 12px 25px rgba(0,0,0,0.20);
+}
+
 .registro-container {
+  font-family: 'Poppins', sans-serif; 
+  
   min-height: 100vh;
 
   display: flex;
