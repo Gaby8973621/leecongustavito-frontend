@@ -1,0 +1,179 @@
+.seleccion-container {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #5b8cff,
+    #a348c7
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  font-family: 'Poppins', sans-serif;
+}
+
+.contenido {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+
+  padding-top: 40px;
+}
+
+/* TÍTULO */
+
+h1 {
+  color: white;
+  font-size: 3.5rem;
+  font-weight: 800;
+
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  text-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* SUBTÍTULO */
+
+.subtitulo {
+  color: rgba(255,255,255,0.95);
+
+  font-size: 1.5rem;
+  font-weight: 400;
+
+  margin-bottom: 10px;
+}
+
+/* MASCOTA */
+
+.mascota {
+  display: block;
+
+  width: 600px;
+  max-width: 100%;
+
+  margin: 0 auto 15px auto;
+
+  filter:
+    drop-shadow(0 20px 30px rgba(0,0,0,.25));
+}
+
+/* TARJETAS */
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+
+  padding: 28px 35px;
+
+  border-radius: 28px;
+
+  cursor: pointer;
+
+  margin-bottom: 20px;
+
+  transition: all 0.3s ease;
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,0.15);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* DOCENTE */
+
+.docente {
+  background: #f7ca4d;
+}
+
+/* ESTUDIANTE */
+
+.estudiante {
+  background: linear-gradient(
+    135deg,
+    #4e86ff,
+    #3c57d8
+  );
+
+  color: white;
+}
+
+/* ICONOS */
+
+.icono {
+  font-size: 4rem;
+}
+
+/* TEXTO TARJETAS */
+
+.card h2 {
+  margin: 0;
+
+  font-size: 2rem;
+  font-weight: 700;
+
+  text-align: left;
+}
+
+.card p {
+  margin-top: 5px;
+
+  font-size: 1.1rem;
+  font-weight: 400;
+
+  text-align: left;
+}
+
+.docente h2,
+.docente p {
+  color: #222;
+}
+
+.estudiante h2,
+.estudiante p {
+  color: white;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+  .contenido {
+    padding-top: 20px;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+  }
+
+  .subtitulo {
+    font-size: 1.2rem;
+  }
+
+  .mascota {
+    width: 400px;
+  }
+
+  .card {
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .card h2 {
+    font-size: 1.4rem;
+  }
+
+  .card p {
+    font-size: 1rem;
+  }
+
+  .icono {
+    font-size: 3rem;
+  }
+}
