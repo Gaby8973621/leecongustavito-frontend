@@ -12,6 +12,9 @@ import {
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import "../styles/AppEstudiante.css";
+import JuegoVerdaderoFalso from "./Juegoverdaderofalso";
+import JuegoMemoria from "./JuegoMemoria";
+import JuegoOrdenaHistoria from "./JuegoOrdenaHistoria";
 
 /* ================= MEDALLAS ================= */
 
@@ -58,7 +61,8 @@ export default function AppEstudiante() {
   const [historial, setHistorial] = useState([]);
   const [cargandoProgreso, setCargandoProgreso] = useState(false);
   const [medallaReciente, setMedallaReciente] = useState(null);
-
+  const [juegoActivo, setJuegoActivo] = useState(null);
+  
   /* ================= LOAD CUENTOS ================= */
 
   useEffect(() => {
@@ -165,6 +169,32 @@ export default function AppEstudiante() {
 
   /* ================= RENDER ================= */
 
+   if (juegoActivo === "vf") {
+  return (
+    <JuegoVerdaderoFalso
+      estudiante={estudiante}
+      onSalir={() => setJuegoActivo(null)}
+    />
+  );
+}
+
+if (juegoActivo === "memoria") {
+  return (
+    <JuegoMemoria
+      estudiante={estudiante}
+      onSalir={() => setJuegoActivo(null)}
+    />
+  );
+}
+
+if (juegoActivo === "ordena") {
+  return (
+    <JuegoOrdenaHistoria
+      estudiante={estudiante}
+      onSalir={() => setJuegoActivo(null)}
+    />
+  );
+}
   if (fase === "leer" && cuentoActivo) {
     return (
       <div className="leer-page">
@@ -261,9 +291,10 @@ export default function AppEstudiante() {
       </div>
 
       <div className="tabs">
-        <button onClick={() => setTab("leer")}>Leer</button>
-        <button onClick={() => setTab("progreso")}>Progreso</button>
-      </div>
+  <button onClick={() => setTab("leer")}>Leer</button>
+  <button onClick={() => setTab("juegos")}>Juegos</button>
+  <button onClick={() => setTab("progreso")}>Progreso</button>
+</div>
 
       {tab === "leer" && (
         <div className="grid-cuentos">
@@ -283,6 +314,30 @@ export default function AppEstudiante() {
         </div>
       )}
 
+      {tab === "juegos" && (
+        <div className="juegos-grid">
+
+          <div
+            className="cuento-card"
+            onClick={() => setJuegoActivo("vf")}
+          >
+            <h3>🧠 Verdadero o Falso</h3>
+            <p>Responde preguntas rápidas</p>
+          </div>
+
+          <div className="cuento-card" onClick={() => setJuegoActivo("memoria")}>
+          <h3>🧩 Memoria</h3>
+          <p>Encuentra las parejas</p>
+          </div>
+
+          <div className="cuento-card" onClick={() => setJuegoActivo("ordena")}>
+          <h3>📖 Ordena la Historia</h3>
+          <p>Ordena los eventos del cuento</p>
+          </div>
+
+        </div>
+      )}
+      
       {tab === "progreso" && (
         <div className="progreso">
           <h3>Medallas</h3>

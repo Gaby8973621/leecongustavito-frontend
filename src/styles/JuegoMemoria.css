@@ -1,0 +1,200 @@
+.mem-page {
+  padding: 1.25rem 1rem 2rem;
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* --- header --- */
+.mem-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mem-back {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: inherit;
+  padding: 0.25rem 0.5rem;
+}
+
+.mem-titulo {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* --- stats --- */
+.mem-stats {
+  display: flex;
+  gap: 10px;
+}
+
+.mem-stat {
+  flex: 1;
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+}
+
+.mem-stat-label {
+  font-size: 11px;
+  color: #888;
+  margin: 0 0 2px;
+}
+
+.mem-stat-num {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+/* --- tablero --- */
+.mem-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+/* --- carta --- */
+.mem-carta {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  border: 1px solid #e8e8e8;
+  background: #f4f4f4;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  transition: transform 0.15s, background 0.2s, border-color 0.2s;
+  overflow: hidden;
+}
+
+.mem-carta:hover:not(.encontrada) {
+  transform: scale(1.04);
+}
+
+.mem-carta.volteada {
+  background: #fff;
+  border-color: #ccc;
+}
+
+.mem-carta.encontrada {
+  background: #EAF3DE;
+  border-color: #639922;
+  cursor: default;
+}
+
+.mem-carta.error {
+  background: #FCEBEB;
+  border-color: #E24B4A;
+}
+
+/* --- texto de la carta --- */
+.mem-carta-texto {
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.35;
+  color: #1a1a1a;
+  word-break: break-word;
+}
+
+.mem-carta.encontrada .mem-carta-texto {
+  color: #27500A;
+}
+
+.mem-carta.error .mem-carta-texto {
+  color: #791F1F;
+}
+
+.mem-dorso {
+  font-size: 22px;
+}
+
+/* --- loading --- */
+.mem-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  color: #888;
+}
+
+/* --- pantalla fin --- */
+.mem-fin-card {
+  text-align: center;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.mem-fin-emoji {
+  font-size: 3.5rem;
+}
+
+.mem-fin-card h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.mem-fin-card p {
+  color: #555;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.mem-estrellas {
+  font-size: 1.6rem;
+}
+
+.mem-fin-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* --- botones generales --- */
+.btn-principal {
+  width: 100%;
+  padding: 0.85rem;
+  background: #1D9E75;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-principal:hover {
+  background: #178a65;
+}
+
+.btn-secundario {
+  width: 100%;
+  padding: 0.85rem;
+  background: #fff;
+  color: #333;
+  border: 1.5px solid #ddd;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-secundario:hover {
+  background: #f5f5f5;
+}
