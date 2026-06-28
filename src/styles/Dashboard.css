@@ -233,6 +233,80 @@
   color: #666;
 }
 
+/* ===== CUENTOS ===== */   
+
+.cuento-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  margin-bottom: 0.75rem;
+  gap: 1rem;
+}
+
+.cuento-info {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+}
+
+.cuento-info h4 {
+  margin: 0 0 0.3rem 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.cuento-emoji {
+  font-size: 1.8rem;
+}
+
+
+.cuento-info p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.cuento-acciones {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.btn-editar {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-editar:hover {
+  background: #bae6fd;
+}
+
+.btn-eliminar {
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-eliminar:hover {
+  background: #fecaca;
+}
+
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 768px) {
@@ -261,5 +335,20 @@
   .codigo-card h2 {
     font-size: 1.5rem;
     letter-spacing: 4px;
+  }
+
+  .cuento-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cuento-acciones {
+    width: 100%;
+  }
+
+  .btn-editar,
+  .btn-eliminar {
+    flex: 1;
+    text-align: center;
   }
 }

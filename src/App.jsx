@@ -9,6 +9,8 @@ import AgregarCuento from "./pages/AgregarCuento";
 import RutaDocente from "./components/RutaDocente";
 import RutaEstudiante from "./components/RutaEstudiante";
 import NotFound from "./pages/NotFound";
+import EditarCuento from "./pages/EditarCuento";
+
 
 
 export default function App() {
@@ -33,6 +35,10 @@ export default function App() {
         {/* Solo estudiante autenticado */}
         <Route path="/app-estudiante" element={
           <RutaEstudiante><AppEstudiante /></RutaEstudiante>
+        } />
+
+        <Route path="/editar-cuento/:id" element={
+          <RutaDocente><EditarCuento /></RutaDocente>
         } />
 
         <Route path="*" element={<NotFound />} />
