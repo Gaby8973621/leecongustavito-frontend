@@ -1,27 +1,37 @@
-import { useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
-import { db, auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
-import "../styles/AgregarCuento.css";
+import { useState, useEffect } from "react";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { db } from "../firebase";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function AgregarCuento() {
+export default function EditarCuento() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [titulo, setTitulo] = useState("");
   const [contenido, setContenido] = useState("");
   const [nivel, setNivel] = useState(1);
-  const [preguntas, setPreguntas] = useState([
-    { pregunta: "", opciones: ["", "", ""], correcta: 0 },
-  ]);
-
+  const [preguntas, setPreguntas] = useState([]);
   const [guardando, setGuardando] = useState(false);
+  const [cargando, setCargando] = useState(true);
   const [exito, setExito] = useState(false);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    const cargar = async () => {
+      const snap = await getDoc(doc(db, "cuentos", id));
+      if (snap.exists()) {
+        const d = snap.data();
+        setTitulo(d.titulo);
+        setContenido(d.contenido);
+        setNivel(d.nivel);
+        setPreguntas(d.preguntas || []);
+      }
+      setCargando(false);
+    };
+    cargar();
+  }, [id]);
 
   const agregarPregunta = () => {
-    setPreguntas([
-      ...preguntas,
-      { pregunta: "", opciones: ["", "", ""], correcta: 0 },
-    ]);
+    setPreguntas([...preguntas, { pregunta: "", opciones: ["", "", ""], correcta: 0 }]);
   };
 
   const actualizarPregunta = (i, campo, valor) => {
@@ -43,57 +53,50 @@ export default function AgregarCuento() {
   const guardar = async (e) => {
     e.preventDefault();
     setGuardando(true);
-
     try {
-      await addDoc(collection(db, "cuentos"), {
+      await updateDoc(doc(db, "cuentos", id), {
         titulo,
         contenido,
         nivel: parseInt(nivel),
         preguntas: preguntas.filter((p) => p.pregunta.trim() !== ""),
-        creadoEn: new Date(),
-        creadoPor: auth.currentUser?.uid,
+        editadoEn: new Date(),
       });
-
       setExito(true);
-
       setTimeout(() => navigate("/dashboard"), 1500);
     } catch (e) {
-      alert("Error al guardar el cuento.");
+      alert("Error al guardar los cambios.");
     } finally {
       setGuardando(false);
     }
   };
 
+  if (cargando) {
+    return (
+      <div className="agregar-cuento-page">
+        <p style={{ padding: "2rem" }}>Cargando cuento...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="agregar-cuento-page">
 
-      {/* HEADER */}
       <div className="agregar-header">
-        <button
-          className="agregar-back-btn"
-          onClick={() => navigate("/dashboard")}
-        >
-          ←
-        </button>
-        <span>Agregar cuento</span>
+        <button className="agregar-back-btn" onClick={() => navigate("/dashboard")}>←</button>
+        <span>Editar cuento</span>
       </div>
 
-      {/* CONTENIDO */}
       <div className="agregar-container">
 
         {exito && (
-          <div className="success">
-            ✅ ¡Cuento guardado! Redirigiendo...
-          </div>
+          <div className="success">✅ ¡Cambios guardados! Redirigiendo...</div>
         )}
 
         <form onSubmit={guardar}>
 
-          {/* INFORMACIÓN */}
           <div className="card">
-            <div className="section-title">
-              Información del cuento
-            </div>
+            <div className="section-title">Información del cuento</div>
+
 
             <input
               className="input"
@@ -122,42 +125,23 @@ export default function AgregarCuento() {
             />
           </div>
 
-          {/* PREGUNTAS */}
           <div className="card">
-
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <div className="section-title">
-                Preguntas del quiz
-              </div>
-
-              <button
-                type="button"
-                className="btn-secondary"
-                onClick={agregarPregunta}
-              >
+              <div className="section-title">Preguntas del quiz</div>
+              <button type="button" className="btn-secondary" onClick={agregarPregunta}>
                 + Agregar
               </button>
             </div>
 
             {preguntas.map((p, pi) => (
               <div key={pi} className="pregunta-card">
-
                 <div className="pregunta-header">
-                  <span className="pregunta-title">
-                    Pregunta {pi + 1}
-                  </span>
-
+                  <span className="pregunta-title">Pregunta {pi + 1}</span>
                   {preguntas.length > 1 && (
                     <button
                       type="button"
                       onClick={() => eliminarPregunta(pi)}
-                      style={{
-                        background: "none",
-                        border: "none",
-                        color: "red",
-                        cursor: "pointer",
-                        fontSize: "12px",
-                      }}
+                      style={{ background: "none", border: "none", color: "red", cursor: "pointer", fontSize: "12px" }}
                     >
                       Eliminar
                     </button>
@@ -167,63 +151,37 @@ export default function AgregarCuento() {
                 <input
                   className="input"
                   value={p.pregunta}
-                  onChange={(e) =>
-                    actualizarPregunta(
-                      pi,
-                      "pregunta",
-                      e.target.value
-                    )
-                  }
+                  onChange={(e) => actualizarPregunta(pi, "pregunta", e.target.value)}
                   placeholder="Escribe la pregunta"
                 />
 
                 {p.opciones.map((op, oi) => (
                   <div key={oi} className="opcion-row">
-
                     <input
                       type="radio"
                       name={`correcta-${pi}`}
                       checked={p.correcta === oi}
-                      onChange={() =>
-                        actualizarPregunta(pi, "correcta", oi)
-                      }
+                      onChange={() => actualizarPregunta(pi, "correcta", oi)}
                     />
-
                     <input
                       className="input"
                       value={op}
-                      onChange={(e) =>
-                        actualizarOpcion(
-                          pi,
-                          oi,
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => actualizarOpcion(pi, oi, e.target.value)}
                       placeholder={`Opción ${oi + 1}`}
                     />
                   </div>
                 ))}
 
-                <div className="small-text">
-                  Marca la opción correcta
-                </div>
-
+                <div className="small-text">Marca la opción correcta</div>
               </div>
             ))}
           </div>
 
-          {/* BOTÓN GUARDAR */}
-          <button
-            className="btn-primary"
-            disabled={guardando}
-          >
-            {guardando
-              ? "Guardando..."
-              : "Guardar cuento 📖"}
+          <button className="btn-primary" disabled={guardando}>
+            {guardando ? "Guardando..." : "Guardar cambios 📖"}
           </button>
 
         </form>
-
       </div>
     </div>
   );
