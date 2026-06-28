@@ -1,113 +1,193 @@
 /* ===================== CONTENEDOR GENERAL ===================== */
-
 .seleccion-container {
   min-height: 100vh;
+  background: linear-gradient(135deg, #1a237e 0%, #7c3aed 50%, #9c27b0 100%);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  padding: 20px;
-  font-family: Arial, sans-serif;
+  padding: 0 16px 40px;
+  position: relative;
+  font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-/* ===================== CONTENIDO ===================== */
+/* ===================== BOTÓN HAMBURGUESA ===================== */
+.menu-docente-wrapper {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 100;
+}
 
-.seleccion-content {
+.menu-docente-btn {
+  background: #1a237e;
+  color: #ffd600;
+  border: 2px solid #ffd600;
+  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.menu-docente-btn:hover {
+  background: #283593;
+}
+
+.menu-docente-dropdown {
+  margin-top: 8px;
+  background: #1a237e;
+  border: 2px solid #ffd600;
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: slideDown 0.2s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.menu-docente-titulo {
+  color: #ffd600;
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.menu-docente-sub {
+  color: #ccc;
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+.btn-panel {
+  background: #ffd600;
+  color: #1a237e;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 4px;
+}
+
+.btn-panel:hover {
+  background: #ffca28;
+}
+
+/* ===================== HEADER COLEGIO ===================== */
+.header-colegio {
   width: 100%;
-  max-width: 520px;
+  max-width: 600px;
+  background: white;
+  border-radius: 0 0 16px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.logo-colegio {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.nombre-colegio {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1a237e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ===================== CONTENIDO PRINCIPAL ===================== */
+.contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 420px;
+  margin-top: 20px;
   text-align: center;
 }
 
-/* ===================== TITULOS ===================== */
-
-.titulo {
+.contenido h1 {
   color: white;
-  font-size: 30px;
+  font-size: 1.7rem;
   font-weight: 900;
-  margin-bottom: 10px;
+  margin: 16px 0 6px;
 }
 
 .subtitulo {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 16px;
-  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1rem;
+  margin: 0 0 10px;
 }
 
-/* ===================== MASCOTA (MÁS GRANDE) ===================== */
-
+/* ===================== MASCOTA ===================== */
 .mascota {
-  width: 300px;
-  max-width: 85%;
-  margin: 25px auto 35px auto;
+  width: 220px;
+  max-width: 60vw;
+  margin: 10px auto;
   display: block;
-  filter: drop-shadow(0 12px 25px rgba(0,0,0,0.25));
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
 }
 
-/* ===================== CARD BASE (MÁS GRANDE) ===================== */
-
+/* ===================== CARD ESTUDIANTE ===================== */
 .card {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 18px;
-
-  padding: 24px 22px;
+  padding: 22px 24px;
   border-radius: 20px;
-
-  margin-bottom: 18px;
-
+  margin-bottom: 16px;
   cursor: pointer;
   transition: all 0.25s ease;
-
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
-
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   text-align: left;
 }
 
-/* hover general */
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.3);
 }
-
-/* ===================== DOCENTE ===================== */
-
-.card.docente {
-  background: #f6c945;
-  color: #2d2d2d;
-}
-
-.card.docente:hover {
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
-}
-
-/* ===================== ESTUDIANTE ===================== */
 
 .card.estudiante {
-  background: #4c7dff;
+  background: #1565c0;
   color: white;
+  margin-top: 8px;
 }
-
-.card.estudiante:hover {
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
-}
-
-/* ===================== ICONO MÁS GRANDE ===================== */
 
 .icono {
   font-size: 48px;
   width: 70px;
   text-align: center;
+  flex-shrink: 0;
 }
 
-/* ===================== TEXTO ===================== */
-
 .card h2 {
-  margin: 0;
-  font-size: 20px;
+  margin: 0 0 4px;
+  font-size: 1.2rem;
   font-weight: 800;
 }
 
 .card p {
   margin: 0;
-  font-size: 14px;
-  opacity: 0.9;
+  font-size: 0.9rem;
+  opacity: 0.85;
 }
