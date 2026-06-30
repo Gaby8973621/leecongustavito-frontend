@@ -1,0 +1,134 @@
+.atrapa-page {
+  padding: 20px;
+  text-align: center;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  height: 90vh; /* Delimita la altura para el área de caída */
+}
+
+.header-atrapa {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.btn-back {
+  padding: 6px 14px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.contador-palabras {
+  font-size: 1.1rem;
+  color: #4b5563;
+  margin-bottom: 5px;
+}
+
+.emoji-central {
+  font-size: 70px;
+  margin: 10px 0;
+}
+
+/* Área de las casillas vacías */
+.palabra-display {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.caja-letra {
+  width: 48px;
+  height: 48px;
+  background: #f3e8ff;
+  border: 2px solid #c084fc;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #6b21a8;
+}
+
+/* --- ESPACIO DONDE CAEN LAS LETRAS --- */
+.lluvia-contenedor {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 380px; /* Altura controlada de la caída */
+  background: #f8fafc;
+  border: 3px dashed #cbd5e1;
+  border-radius: 20px;
+  overflow: hidden; /* Evita que las letras se salgan del recuadro visual */
+}
+
+.letra-cayendo {
+  position: absolute;
+  top: -60px; /* Comienza fuera de la vista arriba */
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: #7c3aed;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  animation: caerLetra 4.5s linear infinite; /* Cae de manera infinita si no se clickea */
+  transition: transform 0.1s ease;
+}
+
+.letra-cayendo:hover {
+  background: #a855f7;
+}
+
+/* --- ANIMACIÓN DE CAÍDA --- */
+@keyframes caerLetra {
+  0% {
+    top: -60px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%; /* Llega al borde inferior de la caja */
+    opacity: 0;
+  }
+}
+
+/* Pantalla final */
+.fin {
+  padding: 50px;
+  text-align: center;
+}
+
+.fin-icon {
+  font-size: 80px;
+  margin-bottom: 10px;
+}
+
+.fin button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: #10b981;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+}

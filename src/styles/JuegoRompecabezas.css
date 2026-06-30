@@ -1,0 +1,86 @@
+.rompe-page {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rompe-header {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.rompe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(3, 120px);
+  gap: 5px;
+}
+
+.pieza {
+  width: 120px;
+  height: 120px;
+  background-size: 360px 360px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 3px solid white;
+  transition: 0.2s;
+}
+
+.pieza:hover {
+  transform: scale(1.03);
+}
+
+.activa {
+  border: 4px solid #ffb703;
+}
+
+.ganaste {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.ganaste button {
+  padding: 12px 20px;
+  border: none;
+  background: #7c3aed;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.rompe-container {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  flex-wrap: wrap; /* Si la pantalla es chica, manda la guía abajo */
+}
+
+.rompe-guia-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-color: #f3f4f6; /* Un fondo sutil */
+  padding: 15px;
+  border-radius: 16px;
+  border: 2px dashed #cbd5e1; /* Estilo de recuadro infantil/educativo */
+}
+
+.rompe-guia-container h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #4b5563;
+}
+
+.rompe-guia {
+  width: 150px; /* Tamaño de la miniatura */
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

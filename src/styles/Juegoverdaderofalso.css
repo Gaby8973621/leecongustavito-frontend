@@ -1,233 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+
+/* ─── Página ──────────────────────────────────────── */
 .vf-page {
-  padding: 1.25rem 1rem 2rem;
+  min-height: 100vh;
+  padding: 24px 16px 40px;
   max-width: 480px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 16px;
+  font-family: 'Nunito', sans-serif;
+  background: #f0fdf4;
 }
 
-/* --- header --- */
+/* ─── Header ──────────────────────────────────────── */
 .vf-header {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 12px;
 }
 
 .vf-back {
-  background: none;
+  background: white;
   border: none;
-  font-size: 1.3rem;
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
   cursor: pointer;
-  color: inherit;
-  padding: 0.25rem 0.5rem;
+  color: #065f46;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
+  transition: transform 0.15s;
 }
+
+.vf-back:active { transform: scale(0.93); }
 
 .vf-titulo {
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #064e3b;
+  margin: 0;
 }
 
-/* --- marcador --- */
+/* ─── Marcador ────────────────────────────────────── */
 .vf-score-row {
   display: flex;
-  gap: 0.75rem;
+  gap: 10px;
 }
 
 .vf-score-card {
   flex: 1;
-  background: #f4f4f4;
-  border-radius: 10px;
-  padding: 0.6rem 1rem;
+  background: white;
+  border-radius: 16px;
+  padding: 10px 12px;
   text-align: center;
+  box-shadow: 0 2px 0 #a7f3d0, 0 4px 12px rgba(16,185,129,0.08);
 }
 
 .vf-score-label {
-  font-size: 0.75rem;
-  color: #888;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #6ee7b7;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   margin: 0 0 2px;
 }
 
 .vf-score-num {
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #064e3b;
   margin: 0;
 }
 
-/* --- progreso --- */
+/* ─── Progreso ────────────────────────────────────── */
 .vf-progress {
-  height: 5px;
-  background: #e5e5e5;
-  border-radius: 3px;
+  height: 8px;
+  background: #d1fae5;
+  border-radius: 99px;
   overflow: hidden;
 }
 
 .vf-progress-inner {
   height: 100%;
-  background: #1D9E75;
-  border-radius: 3px;
-  transition: width 0.3s ease;
+  background: linear-gradient(90deg, #34d399, #10b981);
+  border-radius: 99px;
+  transition: width 0.4s ease;
 }
 
-/* --- etiqueta cuento --- */
+/* ─── Tag cuento ──────────────────────────────────── */
 .vf-tag {
   display: inline-block;
   font-size: 0.75rem;
-  padding: 3px 12px;
-  background: #f0f0f0;
-  color: #666;
+  font-weight: 700;
+  padding: 4px 14px;
+  background: #d1fae5;
+  color: #065f46;
   border-radius: 20px;
   align-self: flex-start;
 }
 
-/* --- tarjeta afirmación --- */
+/* ─── Tarjeta afirmación ──────────────────────────── */
 .vf-card {
-  background: #fff;
-  border: 1px solid #e8e8e8;
-  border-radius: 16px;
-  padding: 1.5rem;
-  min-height: 110px;
+  background: white;
+  border-radius: 24px;
+  padding: 28px 24px;
+  min-height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow:
+    0 4px 0 #a7f3d0,
+    0 8px 24px rgba(16, 185, 129, 0.1);
 }
 
 .vf-card p {
-  font-size: 1.05rem;
-  font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 700;
   text-align: center;
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.6;
   color: #1a1a1a;
 }
 
-/* --- botones V/F --- */
+/* ─── Botones V/F ─────────────────────────────────── */
 .vf-botones {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
+  gap: 12px;
 }
 
 .vf-btn {
-  padding: 0.85rem 0.5rem;
-  border-radius: 12px;
-  border: 1.5px solid #e0e0e0;
-  background: #fff;
-  font-size: 1rem;
-  font-weight: 500;
+  padding: 16px 8px;
+  border-radius: 16px;
+  border: 2px solid #e5e7eb;
+  background: white;
+  font-size: 1.05rem;
+  font-weight: 900;
+  font-family: 'Nunito', sans-serif;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
-  color: #1a1a1a;
+  transition: transform 0.1s, background 0.15s, border-color 0.15s;
+  color: #374151;
+  box-shadow: 0 4px 0 #e5e7eb;
 }
 
-.vf-btn:hover:not(:disabled) {
-  background: #f5f5f5;
+.vf-btn:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: none;
 }
 
-.vf-btn:disabled {
-  cursor: default;
-}
+.vf-btn:disabled { cursor: default; }
 
 .vf-btn.correcto {
-  background: #EAF3DE;
-  border-color: #639922;
-  color: #27500A;
+  background: #d1fae5;
+  border-color: #10b981;
+  color: #065f46;
+  box-shadow: 0 4px 0 #6ee7b7;
 }
 
 .vf-btn.incorrecto {
-  background: #FCEBEB;
-  border-color: #E24B4A;
-  color: #791F1F;
+  background: #fee2e2;
+  border-color: #ef4444;
+  color: #991b1b;
+  box-shadow: 0 4px 0 #fca5a5;
 }
 
-/* --- feedback --- */
+/* ─── Feedback ────────────────────────────────────── */
 .vf-feedback {
   text-align: center;
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 700;
   margin: 0;
+  padding: 10px 16px;
+  border-radius: 12px;
+  animation: popIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .vf-feedback.correcto {
-  color: #3B6D11;
+  background: #d1fae5;
+  color: #065f46;
 }
 
 .vf-feedback.incorrecto {
-  color: #A32D2D;
+  background: #fee2e2;
+  color: #991b1b;
 }
 
-/* --- botones generales --- */
+/* ─── Botones generales ───────────────────────────── */
 .btn-principal {
   width: 100%;
-  padding: 0.85rem;
-  background: #1D9E75;
-  color: #fff;
+  padding: 14px;
+  background: #10b981;
+  color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
   cursor: pointer;
-  transition: background 0.15s;
+  box-shadow: 0 4px 0 #047857;
+  transition: transform 0.1s;
 }
 
-.btn-principal:hover {
-  background: #178a65;
+.btn-principal:active {
+  transform: translateY(4px);
+  box-shadow: none;
 }
 
 .btn-secundario {
   width: 100%;
-  padding: 0.85rem;
-  background: #fff;
-  color: #333;
-  border: 1.5px solid #ddd;
-  border-radius: 12px;
+  padding: 12px;
+  background: white;
+  color: #065f46;
+  border: 2px solid #a7f3d0;
+  border-radius: 14px;
   font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
   cursor: pointer;
+  transition: transform 0.1s;
 }
 
-.btn-secundario:hover {
-  background: #f5f5f5;
-}
+.btn-secundario:active { transform: scale(0.97); }
 
-/* --- loading --- */
+/* ─── Loading ─────────────────────────────────────── */
 .vf-loading {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 200px;
-  color: #888;
+  color: #6ee7b7;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
-/* --- pantalla fin --- */
+/* ─── Pantalla fin ────────────────────────────────── */
 .vf-fin-card {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 32px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  gap: 10px;
+  background: white;
+  border-radius: 28px;
+  box-shadow:
+    0 4px 0 #a7f3d0,
+    0 8px 32px rgba(16, 185, 129, 0.1);
 }
 
 .vf-fin-emoji {
-  font-size: 3.5rem;
+  font-size: 4rem;
 }
 
 .vf-fin-card h2 {
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #064e3b;
   margin: 0;
 }
 
 .vf-fin-card p {
-  color: #555;
+  color: #6b7280;
   font-size: 1rem;
+  font-weight: 700;
   margin: 0;
 }
 
 .vf-fin-acciones {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 10px;
   width: 100%;
-  margin-top: 0.5rem;
+  margin-top: 8px;
+}
+
+/* ─── Animación ───────────────────────────────────── */
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* ─── Responsive ──────────────────────────────────── */
+@media (max-width: 400px) {
+  .vf-card { padding: 20px 16px; }
+  .vf-btn  { padding: 12px 6px; font-size: 0.95rem; }
 }

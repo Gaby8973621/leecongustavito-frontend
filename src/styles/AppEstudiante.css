@@ -1,24 +1,23 @@
-/* ===== CONTENEDOR GENERAL ===== */
-
+/* ===== GENERAL ===== */
 .app-estudiante,
 .leer-page,
 .quiz-page,
 .resultado-page {
   min-height: 100vh;
-  background: #f5f7fb;
+  background: linear-gradient(180deg, #f8fbff 0%, #eef7ff 100%);
   font-family: "Segoe UI", sans-serif;
 }
 
 /* ===== HEADER ===== */
-
 .header,
 .leer-header {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  padding: 18px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .header h2 {
@@ -28,75 +27,74 @@
 
 .header button,
 .leer-header button {
-  background: rgba(255,255,255,0.2);
-  border: none;
-  color: white;
   padding: 10px 16px;
-  border-radius: 10px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .header button:hover,
 .leer-header button:hover {
-  background: rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.35);
 }
 
 /* ===== TABS ===== */
-
 .tabs {
   display: flex;
   justify-content: center;
   gap: 12px;
-  padding: 16px;
+  padding: 18px;
   background: white;
-  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .tabs button {
+  padding: 12px 24px;
   border: none;
+  border-radius: 999px;
   background: #eef2ff;
   color: #4f46e5;
-  padding: 10px 22px;
-  border-radius: 999px;
+  font-weight: 700;
   cursor: pointer;
-  font-weight: 600;
   transition: 0.3s;
 }
 
 .tabs button:hover {
   background: #dbe4ff;
+  transform: translateY(-2px);
 }
 
-/* ===== GRID DE CUENTOS ===== */
-
+/* ===== CUENTOS ===== */
 .grid-cuentos {
-  max-width: 1100px;
-  margin: 25px auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
+  max-width: 1100px;
+  margin: 30px auto;
   padding: 0 20px;
 }
 
 .cuento-card {
-  background: white;
-  border-radius: 20px;
   padding: 25px;
+  background: white;
+  border-radius: 25px;
   text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+  transition: 0.35s;
 }
 
 .cuento-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 .cuento-card div:first-child {
-  font-size: 3rem;
   margin-bottom: 10px;
+  font-size: 3rem;
 }
 
 .cuento-card h4 {
@@ -104,8 +102,112 @@
   color: #333;
 }
 
-/* ===== PANTALLA LEER ===== */
+/* ===== JUEGOS ===== */
+.juegos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
 
+.juegos-grid .cuento-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 190px;
+  padding: 28px;
+  background: white;
+  border-radius: 28px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: 0.35s;
+}
+
+.juegos-grid .cuento-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+}
+
+.juegos-grid .cuento-card::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.juegos-grid h3 {
+  margin: 0;
+  color: #2d3748;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.juegos-grid p {
+  margin-top: 12px;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ===== ICONOS ===== */
+.game-icon {
+  margin-bottom: 15px;
+  font-size: 60px;
+  animation: flotar 3s ease infinite;
+}
+
+@keyframes flotar {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ===== COLORES DE JUEGOS ===== */
+.juego-vf {
+  background: linear-gradient(135deg, #ffdee9, #b5fffc);
+}
+.juego-memoria {
+  background: linear-gradient(135deg, #ffe29f, #ffa99f);
+}
+.juego-ordena {
+  background: linear-gradient(135deg, #d4fc79, #96e6a1);
+}
+.juego-completar {
+  background: linear-gradient(135deg, #c2e9fb, #a1c4fd);
+}
+.juego-rompecabezas {
+  background: linear-gradient(135deg, #f6d365, #fda085);
+}
+.juego-palabras {
+  background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+}
+.juego-atrapa {
+  background: linear-gradient(135deg, #84fab0, #8fd3f4);
+}
+.juego-escucha {
+  background: linear-gradient(135deg, #fccb90, #d57eeb);
+}
+
+.juego-adivina {
+  background: linear-gradient(135deg, #fec163, #de4313);
+  color: white;
+}
+
+/* ===== LEER ===== */
 .leer-content {
   max-width: 850px;
   margin: 30px auto;
@@ -113,29 +215,27 @@
 }
 
 .cuento-emoji {
+  margin-bottom: 20px;
   text-align: center;
   font-size: 5rem;
-  margin-bottom: 20px;
 }
 
 .cuento-texto {
-  background: white;
   padding: 30px;
-  border-radius: 20px;
-  line-height: 1.9;
-  font-size: 1rem;
+  background: white;
+  border-radius: 25px;
   color: #444;
-  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+  line-height: 1.9;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* ===== BOTON PRINCIPAL ===== */
-
+/* ===== BOTONES ===== */
 .btn-principal {
   width: 100%;
   margin-top: 25px;
   padding: 15px;
   border: none;
-  border-radius: 14px;
+  border-radius: 15px;
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   font-size: 1rem;
@@ -145,16 +245,15 @@
 }
 
 .btn-principal:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .btn-principal:disabled {
-  background: #cfcfcf;
+  background: #ccc;
   cursor: not-allowed;
 }
 
 /* ===== QUIZ ===== */
-
 .quiz-page {
   padding: 30px;
 }
@@ -162,25 +261,23 @@
 .pregunta-card {
   max-width: 850px;
   margin: 0 auto 20px;
-  background: white;
   padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .pregunta-card h4 {
   margin-bottom: 20px;
-  color: #333;
 }
 
 .opcion {
   width: 100%;
-  text-align: left;
-  border: 2px solid #e5e7eb;
-  background: white;
+  margin-bottom: 12px;
   padding: 14px;
-  margin-bottom: 10px;
-  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  background: white;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -193,11 +290,10 @@
   background: #eef2ff;
   border-color: #667eea;
   color: #4f46e5;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* ===== RESULTADO ===== */
-
 .resultado-page {
   display: flex;
   justify-content: center;
@@ -205,95 +301,84 @@
 }
 
 .resultado-card {
-  width: 100%;
   max-width: 500px;
-  background: white;
   padding: 40px;
+  background: white;
+  border-radius: 30px;
   text-align: center;
-  border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
 .resultado-card h1 {
   color: #4f46e5;
-  margin-bottom: 20px;
 }
 
 .resultado-card p {
   font-size: 2rem;
   font-weight: bold;
-  color: #333;
 }
 
 .resultado-card button {
   margin-top: 20px;
+  padding: 14px 24px;
   border: none;
-  background: linear-gradient(135deg,#667eea,#764ba2);
+  border-radius: 15px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
-  padding: 14px 25px;
-  border-radius: 14px;
   cursor: pointer;
 }
 
-/* ===== PROGRESO ===== */
-
+/* ===== MEDALLAS ===== */
 .progreso {
   max-width: 1100px;
   margin: 30px auto;
   padding: 0 20px;
 }
 
-.progreso h3 {
-  margin-bottom: 20px;
-  color: #333;
-}
-
 .medallas {
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
 }
 
 .medalla {
-  background: white;
   padding: 20px;
+  background: white;
+  border-radius: 20px;
   text-align: center;
-  border-radius: 18px;
-  box-shadow: 0 4px 15px rgba(0,0,0,.08);
-  transition: .3s;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
 }
 
 .medalla:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
 }
 
 .medalla div {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-size: 2.7rem;
 }
 
 .medalla p {
-  margin: 0;
-  font-weight: 600;
   color: #444;
+  font-weight: 700;
 }
 
 /* ===== RESPONSIVE ===== */
-
 @media (max-width: 768px) {
-  .header,
-  .leer-header {
-    padding: 15px;
+  .tabs {
+    flex-wrap: wrap;
   }
-
-  .grid-cuentos {
+  .grid-cuentos,
+  .juegos-grid {
     grid-template-columns: 1fr;
   }
-
-  .cuento-texto {
+  .juegos-grid {
+    padding: 15px;
+  }
+  .cuento-card {
     padding: 20px;
   }
-
   .resultado-card {
     margin: 20px;
   }

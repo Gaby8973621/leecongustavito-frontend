@@ -15,17 +15,64 @@ import "../styles/AppEstudiante.css";
 import JuegoVerdaderoFalso from "./Juegoverdaderofalso";
 import JuegoMemoria from "./JuegoMemoria";
 import JuegoOrdenaHistoria from "./JuegoOrdenaHistoria";
+import JuegoCompletarPalabra from "./JuegoCompletarPalabra";
+import JuegoRompecabezas from "./JuegoRompecabezas";
+import JuegoOrdenaPalabra from "./JuegoOrdenaPalabra";
+import JuegoAdivinaCuento from "./JuegoAdivinaCuento";
+import JuegoEscuchaResponde from "./JuegoEscuchaResponde";
+import JuegoAtrapaLetra from "./JuegoAtrapaLetra";
 
 /* ================= MEDALLAS ================= */
 
 const MEDALLAS = [
-  { id: "primera_lectura", emoji: "🌱", nombre: "Primera lectura", desc: "Completaste tu primer cuento", tipo: "cuentos", meta: 1 },
-  { id: "lector_activo", emoji: "📚", nombre: "Lector activo", desc: "Leíste 5 cuentos", tipo: "cuentos", meta: 5 },
-  { id: "gran_lector", emoji: "🏅", nombre: "Gran lector", desc: "Leíste 10 cuentos", tipo: "cuentos", meta: 10 },
-
-  { id: "primeras_estrellas", emoji: "⭐", nombre: "Primeras estrellas", desc: "Acumulaste 10 puntos", tipo: "puntos", meta: 10 },
-  { id: "en_racha", emoji: "🔥", nombre: "En racha", desc: "Acumulaste 50 puntos", tipo: "puntos", meta: 50 },
-  { id: "campeon_lector", emoji: "🏆", nombre: "Campeón lector", desc: "Acumulaste 100 puntos", tipo: "puntos", meta: 100 },
+  {
+    id: "primera_lectura",
+    emoji: "🌱",
+    nombre: "Primera lectura",
+    desc: "Completaste tu primer cuento",
+    tipo: "cuentos",
+    meta: 1,
+  },
+  {
+    id: "lector_activo",
+    emoji: "📚",
+    nombre: "Lector activo",
+    desc: "Leíste 5 cuentos",
+    tipo: "cuentos",
+    meta: 5,
+  },
+  {
+    id: "gran_lector",
+    emoji: "🏅",
+    nombre: "Gran lector",
+    desc: "Leíste 10 cuentos",
+    tipo: "cuentos",
+    meta: 10,
+  },
+  {
+    id: "primeras_estrellas",
+    emoji: "⭐",
+    nombre: "Primeras estrellas",
+    desc: "Acumulaste 10 puntos",
+    tipo: "puntos",
+    meta: 10,
+  },
+  {
+    id: "en_racha",
+    emoji: "🔥",
+    nombre: "En racha",
+    desc: "Acumulaste 50 puntos",
+    tipo: "puntos",
+    meta: 50,
+  },
+  {
+    id: "campeon_lector",
+    emoji: "🏆",
+    nombre: "Campeón lector",
+    desc: "Acumulaste 100 puntos",
+    tipo: "puntos",
+    meta: 100,
+  },
 ];
 
 function calcularMedallas(historial) {
@@ -35,9 +82,7 @@ function calcularMedallas(historial) {
   return MEDALLAS.map((m) => ({
     ...m,
     ganada:
-      m.tipo === "cuentos"
-        ? cuentosLeidos >= m.meta
-        : puntosTotal >= m.meta,
+      m.tipo === "cuentos" ? cuentosLeidos >= m.meta : puntosTotal >= m.meta,
     progreso:
       m.tipo === "cuentos"
         ? Math.min(cuentosLeidos, m.meta)
@@ -62,7 +107,7 @@ export default function AppEstudiante() {
   const [cargandoProgreso, setCargandoProgreso] = useState(false);
   const [medallaReciente, setMedallaReciente] = useState(null);
   const [juegoActivo, setJuegoActivo] = useState(null);
-  
+
   /* ================= LOAD CUENTOS ================= */
 
   useEffect(() => {
@@ -87,7 +132,7 @@ export default function AppEstudiante() {
     const q = query(
       collection(db, "resultados"),
       where("estudianteId", "==", estudiante.id),
-      orderBy("fecha", "desc")
+      orderBy("fecha", "desc"),
     );
 
     const snap = await getDocs(q);
@@ -103,7 +148,6 @@ export default function AppEstudiante() {
         salida: new Date(),
       });
     }
-
     localStorage.removeItem("estudiante");
     navigate("/seleccion");
   };
@@ -117,14 +161,14 @@ export default function AppEstudiante() {
 
   const todasRespondidas = () => {
     return cuentoActivo?.preguntas?.every(
-      (_, i) => respuestas[i] !== undefined
+      (_, i) => respuestas[i] !== undefined,
     );
   };
 
   const calcularPuntaje = () => {
     return cuentoActivo.preguntas.reduce(
       (acc, p, i) => acc + (respuestas[i] === p.correcta ? 1 : 0),
-      0
+      0,
     );
   };
 
@@ -133,7 +177,6 @@ export default function AppEstudiante() {
 
     const puntaje = calcularPuntaje();
     const total = cuentoActivo.preguntas.length;
-
     const medallasAntes = calcularMedallas(historial);
 
     await addDoc(collection(db, "resultados"), {
@@ -154,11 +197,9 @@ export default function AppEstudiante() {
     ];
 
     const medallasDespues = calcularMedallas(nuevoHistorial);
-
     const nueva = medallasDespues.find(
-      (m, i) => m.ganada && !medallasAntes[i].ganada
+      (m, i) => m.ganada && !medallasAntes[i].ganada,
     );
-
     if (nueva) setMedallaReciente(nueva);
 
     setHistorial(nuevoHistorial);
@@ -167,34 +208,83 @@ export default function AppEstudiante() {
     setGuardando(false);
   };
 
-  /* ================= RENDER ================= */
+  /* ================= JUEGOS ================= */
 
-   if (juegoActivo === "vf") {
-  return (
-    <JuegoVerdaderoFalso
-      estudiante={estudiante}
-      onSalir={() => setJuegoActivo(null)}
-    />
-  );
-}
+  if (juegoActivo === "vf")
+    return (
+      <JuegoVerdaderoFalso
+        estudiante={estudiante}
+        onSalir={() => setJuegoActivo(null)}
+      />
+    );
 
-if (juegoActivo === "memoria") {
-  return (
-    <JuegoMemoria
-      estudiante={estudiante}
-      onSalir={() => setJuegoActivo(null)}
-    />
-  );
-}
+  if (juegoActivo === "memoria")
+    return (
+      <JuegoMemoria
+        estudiante={estudiante}
+        onSalir={() => setJuegoActivo(null)}
+      />
+    );
 
-if (juegoActivo === "ordena") {
-  return (
-    <JuegoOrdenaHistoria
-      estudiante={estudiante}
-      onSalir={() => setJuegoActivo(null)}
-    />
-  );
-}
+  if (juegoActivo === "completar")
+    return (
+      <JuegoCompletarPalabra
+        estudiante={estudiante}
+        onSalir={() => setJuegoActivo(null)}
+      />
+    );
+
+  if (juegoActivo === "rompecabezas")
+    return (
+      <JuegoRompecabezas
+        estudiante={estudiante}
+        onSalir={() => setJuegoActivo(null)}
+      />
+    );
+
+  if (juegoActivo === "ordena")
+    return (
+      <JuegoOrdenaHistoria
+        estudiante={estudiante}
+        onSalir={() => setJuegoActivo(null)}
+      />
+    );
+
+  if (juegoActivo === "ordenarPalabra")
+    return (
+      <JuegoOrdenaPalabra
+        estudiante={estudiante}
+        onSalir={() => setJuegoActivo(null)}
+      />
+    );
+
+  if (juegoActivo === "adivinaCuento")
+    return (
+      <JuegoAdivinaCuento
+        estudiante={estudiante}
+        onSalir={() => setJuegoActivo(null)}
+      />
+    );
+
+  if (juegoActivo === "escuchar") {
+    return (
+      <JuegoEscuchaResponde
+        estudiante={estudiante}
+        onSalir={() => setJuegoActivo(null)}
+      />
+    );
+  }
+
+  if (juegoActivo === "atrapa") {
+    return (
+      <JuegoAtrapaLetra
+        estudiante={estudiante}
+        onSalir={() => setJuegoActivo(null)}
+      />
+    );
+  }
+  /* ================= FASES CUENTO ================= */
+
   if (fase === "leer" && cuentoActivo) {
     return (
       <div className="leer-page">
@@ -202,20 +292,10 @@ if (juegoActivo === "ordena") {
           <button onClick={() => setFase("lista")}>←</button>
           <span>{cuentoActivo.titulo}</span>
         </div>
-
         <div className="leer-content">
-          <div className="cuento-emoji">
-            {cuentoActivo.emoji}
-          </div>
-
-          <div className="cuento-texto">
-            {cuentoActivo.contenido}
-          </div>
-
-          <button
-            className="btn-principal"
-            onClick={() => setFase("quiz")}
-          >
+          <div className="cuento-emoji">{cuentoActivo.emoji}</div>
+          <div className="cuento-texto">{cuentoActivo.contenido}</div>
+          <button className="btn-principal" onClick={() => setFase("quiz")}>
             ¡Responder preguntas! ❓
           </button>
         </div>
@@ -229,21 +309,17 @@ if (juegoActivo === "ordena") {
         {cuentoActivo.preguntas.map((p, i) => (
           <div key={i} className="pregunta-card">
             <h4>{p.pregunta}</h4>
-
             {p.opciones.map((op, j) => (
               <button
                 key={j}
                 onClick={() => handleResponder(i, j)}
-                className={`opcion ${
-                  respuestas[i] === j ? "active" : ""
-                }`}
+                className={`opcion ${respuestas[i] === j ? "active" : ""}`}
               >
                 {op}
               </button>
             ))}
           </div>
         ))}
-
         <button
           className="btn-principal"
           disabled={!todasRespondidas()}
@@ -260,11 +336,9 @@ if (juegoActivo === "ordena") {
       <div className="resultado-page">
         <div className="resultado-card">
           <h1>🎉 Resultado</h1>
-
           <p>
             {resultadoActual.puntaje} / {resultadoActual.total}
           </p>
-
           <button
             onClick={() => {
               setFase("lista");
@@ -291,10 +365,10 @@ if (juegoActivo === "ordena") {
       </div>
 
       <div className="tabs">
-  <button onClick={() => setTab("leer")}>Leer</button>
-  <button onClick={() => setTab("juegos")}>Juegos</button>
-  <button onClick={() => setTab("progreso")}>Progreso</button>
-</div>
+        <button onClick={() => setTab("leer")}>Leer</button>
+        <button onClick={() => setTab("juegos")}>Juegos</button>
+        <button onClick={() => setTab("progreso")}>Progreso</button>
+      </div>
 
       {tab === "leer" && (
         <div className="grid-cuentos">
@@ -316,28 +390,63 @@ if (juegoActivo === "ordena") {
 
       {tab === "juegos" && (
         <div className="juegos-grid">
-
-          <div
-            className="cuento-card"
-            onClick={() => setJuegoActivo("vf")}
-          >
+          <div className="cuento-card" onClick={() => setJuegoActivo("vf")}>
             <h3>🧠 Verdadero o Falso</h3>
             <p>Responde preguntas rápidas</p>
           </div>
-
-          <div className="cuento-card" onClick={() => setJuegoActivo("memoria")}>
-          <h3>🧩 Memoria</h3>
-          <p>Encuentra las parejas</p>
+          <div
+            className="cuento-card"
+            onClick={() => setJuegoActivo("memoria")}
+          >
+            <h3>🧩 Memoria</h3>
+            <p>Encuentra las parejas</p>
           </div>
-
           <div className="cuento-card" onClick={() => setJuegoActivo("ordena")}>
-          <h3>📖 Ordena la Historia</h3>
-          <p>Ordena los eventos del cuento</p>
+            <h3>📖 Ordena la Historia</h3>
+            <p>Ordena los eventos del cuento</p>
           </div>
-
+          <div
+            className="cuento-card"
+            onClick={() => setJuegoActivo("completar")}
+          >
+            <h3>✏️ Completa la Palabra</h3>
+            <p>Coloca las letras que faltan</p>
+          </div>
+          <div
+            className="cuento-card"
+            onClick={() => setJuegoActivo("rompecabezas")}
+          >
+            <h3>🧩 Rompecabezas</h3>
+            <p>Arma la imagen del cuento</p>
+          </div>
+          <div
+            className="cuento-card"
+            onClick={() => setJuegoActivo("ordenarPalabra")}
+          >
+            <h3>🔤 Ordena la Palabra</h3>
+            <p>Organiza las letras correctamente</p>
+          </div>
+          <div
+            className="cuento-card"
+            onClick={() => setJuegoActivo("adivinaCuento")}
+          >
+            <h3>📖 Adivina el Cuento</h3>
+            <p>¿De qué cuento es esta frase?</p>
+          </div>
+          <div
+            className="cuento-card"
+            onClick={() => setJuegoActivo("escuchar")}
+          >
+            <h3>🎧 Escucha y responde</h3>
+            <p>Escucha la pregunta y elige la respuesta correcta</p>
+          </div>
+          <div className="cuento-card" onClick={() => setJuegoActivo("atrapa")}>
+            <h3>🎯 Atrapa la Letra</h3>
+            <p>Descubre la palabra atrapando letras</p>
+          </div>
         </div>
       )}
-      
+
       {tab === "progreso" && (
         <div className="progreso">
           <h3>Medallas</h3>

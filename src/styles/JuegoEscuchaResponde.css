@@ -1,0 +1,151 @@
+.esc-page {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.esc-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.esc-header button {
+  padding: 8px 15px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.esc-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 450px;
+  text-align: center;
+}
+
+.esc-progreso {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.esc-icon {
+  font-size: 70px;
+  margin-bottom: 15px;
+}
+
+.btn-audio {
+  padding: 12px 18px;
+  background: #7c3aed;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 20px 0;
+  transition: background 0.2s;
+}
+
+.btn-audio:hover {
+  background: #6d28d9;
+}
+
+.opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.opciones button {
+  padding: 14px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background: #f3f4f6;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+.opciones button:not(:disabled):hover {
+  background: #ddd6fe;
+}
+
+/* --- Feedback de respuestas correctas e incorrectas --- */
+.opciones button.correcta {
+  background-color: #10b981 !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.opciones button.incorrecta {
+  background-color: #ef4444 !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.opciones button.desactivada {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.puntaje {
+  margin-top: 25px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #7c3aed;
+}
+
+/* --- Estilos de la Pantalla de Victoria --- */
+.pantalla-victoria h2 {
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.resultado-texto {
+  font-size: 18px;
+  color: #4b5563;
+  margin-bottom: 15px;
+}
+
+.estrellas-finales {
+  font-size: 30px;
+  margin-bottom: 25px;
+  letter-spacing: 5px;
+}
+
+.botones-finales {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-reiniciar {
+  padding: 12px 20px;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-salir-menu {
+  padding: 12px 20px;
+  background: #f3f4f6;
+  color: #374151;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
