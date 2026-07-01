@@ -7,6 +7,8 @@ import "../styles/JuegoCompletarPalabra.css";
    JUEGO: COMPLETA LA PALABRA
    ============================================================ */
 
+const MAX_PALABRAS = 5;
+
 const PALABRAS_FALLBACK = [
   { emoji: "🐷", pista: "Animal del cuento Los tres cerditos", palabra: "CERDITO", huecos: [2, 4] },
   { emoji: "👸", pista: "Princesa que perdió su zapato", palabra: "ZAPATO", huecos: [1, 4] },
@@ -48,6 +50,28 @@ function mezclar(arr) {
   return [...arr].sort(() => Math.random() - 0.5);
 }
 
+/* ---------- valida que una pregunta tenga datos usables ----------
+   Evita que un documento mal cargado en Firestore (palabra vacía,
+   huecos fuera de rango, tipos incorrectos, etc.) rompa el juego
+   mostrando texto corrupto en las celdas. */
+function esPalabraValida(item) {
+  if (!item || typeof item.palabra !== "string") return false;
+  const palabra = item.palabra.trim().toUpperCase();
+  if (palabra.length < 3 || palabra.length > 12) return false;
+  if (!/^[A-ZÁÉÍÓÚÑ]+$/.test(palabra)) return false;
+  if (!Array.isArray(item.huecos) || item.huecos.length === 0) return false;
+  const huecosValidos = item.huecos.every(
+    (h) => Number.isInteger(h) && h >= 0 && h < palabra.length
+  );
+  if (!huecosValidos) return false;
+  if (typeof item.pista !== "string" || !item.pista.trim()) return false;
+  return true;
+}
+
+function normalizarPalabra(item) {
+  return { ...item, palabra: item.palabra.trim().toUpperCase() };
+}
+
 function generarLetras(palabra, huecos) {
   // letras correctas (las que faltan)
   const correctas = huecos.map((i) => palabra[i]);
@@ -87,11 +111,15 @@ export default function JuegoCompletarPalabra({ estudiante, onSalir }) {
     const cargar = async () => {
       try {
         const snap = await getDocs(collection(db, "palabrasCompletar"));
-        const desdeFirebase = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+        const desdeFirebase = snap.docs
+          .map((d) => ({ id: d.id, ...d.data() }))
+          .filter(esPalabraValida)
+          .map(normalizarPalabra);
+
         const lista = desdeFirebase.length >= 2 ? desdeFirebase : PALABRAS_FALLBACK;
-        setPalabras(mezclar(lista));
+        setPalabras(mezclar(lista).slice(0, MAX_PALABRAS));
       } catch {
-        setPalabras(mezclar(PALABRAS_FALLBACK));
+        setPalabras(mezclar(PALABRAS_FALLBACK).slice(0, MAX_PALABRAS));
       } finally {
         setCargando(false);
       }
@@ -220,7 +248,7 @@ export default function JuegoCompletarPalabra({ estudiante, onSalir }) {
 
   /* ---------- reiniciar ---------- */
   const reiniciar = () => {
-    setPalabras(mezclar(PALABRAS_FALLBACK));
+    setPalabras(mezclar(PALABRAS_FALLBACK).slice(0, MAX_PALABRAS));
     setActual(0);
     setCorrectas(0);
     setFase("juego");
@@ -281,7 +309,7 @@ export default function JuegoCompletarPalabra({ estudiante, onSalir }) {
         </div>
         <div className="cp-stat">
           <p className="cp-stat-label">Palabra</p>
-          <p className="cp-stat-num">{actual + 1}/{palabras.length}</p>
+          <p className="cp-stat-num">{actual + 1}/{MAX_PALABRAS}</p>
         </div>
       </div>
 
