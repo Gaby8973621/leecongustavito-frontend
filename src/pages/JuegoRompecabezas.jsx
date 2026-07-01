@@ -10,7 +10,7 @@ import gato from "../assets/rompecabezas/gato.jpg";
 import libreytortuga from "../assets/rompecabezas/libreytortuga.jpg";
 import patito from "../assets/rompecabezas/patito.jpg";
 import peter from "../assets/rompecabezas/peter.jpg";
-import pinocho from "../assets/rompecabezas/pinocho.jpg";
+import pinocho from "../assets/rompecabezas/pinocho.jpeg";
 import principito from "../assets/rompecabezas/principito.jpeg";
 import ricitos from "../assets/rompecabezas/ricitos.jpg";
 import sirenita from "../assets/rompecabezas/sirenita.jpg";
